@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Untitled</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'assets/css/styles.min.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="bs-callout bs-callout-success">
+            <h4>Success </h4>
+            <ul class="list-group" style="margin-top: 16px;">
+              {% for key, value in respons_dict.items %}
+                <li class="list-group-item"><span class="text-center">{{key}}: {{value}}</span></li>
+              {% endfor %}
+            </ul>
+            <p class="text-center" style="color: rgb(69,147,72);margin-top: 29px;">your transistion was successful goto <a href="{% url 'home' %}">home</a></p>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

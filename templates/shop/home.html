@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Farmers Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+SC">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'assets/css/styles_.min.css' %}">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-md fixed-top navigation-clean" style="background-color: #ffffff;">
+        <div class="container"><a class="navbar-brand" href="#" style="font-family: 'Alegreya SC', serif;">Farmers portal</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div
+                class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav ml-auto">
+                  <li class="nav-item" role="presentation">
+                      <form class="form-inline" method="get" action="{% url 'home' %}"><input class="form-control" type="search" name='item' style="margin-right: 9px;margin-top: 0px;padding-bottom: 5px;"><button class="btn btn-primary" type="submit" style="width: 65px;height: 38px;padding-top: 3px;">seach</button></form>
+                  </li>
+                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" style="color: rgb(0,0,0);">{{user.username}}&nbsp;</a>
+                        <div class="dropdown-menu" role="menu">
+                          <a class="dropdown-item" role="presentation" href="{% url 'logout' %}">Logout</a>
+                          <a class="dropdown-item" role="presentation" href="{% url 'showcart' %}">Cart</a>
+                          <a class="dropdown-item" role="presentation" href="{% url 'orders' %}">Orders</a>
+                        </div>
+                    </li>
+                </ul>
+        </div>
+        </div>
+    </nav>
+    <div style="margin-top: 75px;"><hr><div class="photo-gallery">
+<div class="container-fluid">
+  <div class="px-lg-5">
+
+    <div class="row">
+      <!-- Gallery item -->
+      {% for item in items %}
+      <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+        <div class="bg-white rounded shadow-sm"><img src="{{item.image.url}}" alt="" class="img-fluid card-img-top" style="height:200px;">
+          <div class="p-4">
+            <h5> <a href="{% url 'detail' item.pk %}" style="text-decoration:none;" class="text-dark">{{item.name}}</a></h5>
+            <p class="small text-muted mb-0">Price: &#8377;{{item.price}}</p>
+            <!---<div class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
+              <p class="small mb-0"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold">JPG</span></p>
+              <div class="badge badge-danger px-3 rounded-pill font-weight-normal">New</div>
+            </div>-->
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      <!-- End -->
+
+
+    </div>
+
+  </div>
+</div>
+</div></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

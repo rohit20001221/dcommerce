@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Untitled</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'assets/css/styles567.min.css' %}">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="padding-bottom: 7px;">
+        <div class="container"><a class="navbar-brand" href="#">Orders</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse"
+                id="navcol-1">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">{{user.username}}</a>
+                        <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="{% url 'home' %}">home</a></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <hr>
+    <div class="jumbotron" style="margin: 36px;">
+        <h1>Your Orders</h1>
+        <ul class="list-group">
+            <li class="list-group-item" style="margin-bottom: 18px;">
+              {% for order in orders %}
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">{{order.name}}</h4>
+                        <h6 class="text-muted card-subtitle mb-2">details</h6>
+                        <ul class="list-group">
+                            <li class="list-group-item"><span>price: {{order.price}}</span></li>
+                            <li class="list-group-item"><span>quantity: {{order.quantity}}</span></li>
+                            <li class="list-group-item"><span>farmer: {{order.farmer.name}}</span></li>
+                            <li class="list-group-item"><span>phonenumber: {{order.farmer.phonenumber}}</span></li>
+                            <li class="list-group-item"><span>address: {{order.farmer.state}} {{order.farmer.city}} {{order.farmer.address}}</span></li>
+                        </ul><a class="card-link" href="{% url 'track' order.e %}">track</a><a class="card-link" href="{% url 'order_received' order.e %}">received</a></div>
+                </div>
+                {% endfor %}
+            </li>
+        </ul>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
